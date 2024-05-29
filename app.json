@@ -1,11 +1,12 @@
 {
   "expo": {
-    "name": "ordyne",
+    "name": "Ordyne",
     "slug": "ordyne",
+    "scheme": "ordyne",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
-    "userInterfaceStyle": "light",
+    "userInterfaceStyle": "dark",
     "splash": {
       "image": "./assets/splash.png",
       "resizeMode": "contain",
@@ -18,10 +19,22 @@
       "adaptiveIcon": {
         "foregroundImage": "./assets/adaptive-icon.png",
         "backgroundColor": "#ffffff"
-      }
+      },
+      "package": "com.molsuco.ordyne"
     },
     "web": {
       "favicon": "./assets/favicon.png"
+    },
+    "plugins": [
+      "expo-router"
+    ],
+    "extra": {
+      "router": {
+        "origin": false
+      },
+      "eas": {
+        "projectId": "f1f0b7ca-0c91-4fde-a614-9cee570fca88"
+      }
     }
   }
 }
