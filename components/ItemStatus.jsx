@@ -4,7 +4,15 @@ import { icons } from "../constants";
 
 const ItemStatus = ({ status, data, hora, local }) => {
     return (
+        
         <View className="flex flex-col items-start">
+             <View className="flex flex-row items-start">
+                <View className="w-[46px] h-[46px] flex justify-center items-center">
+                    <View className='h-[46px] w-[2px] bg-white'>
+
+                    </View>
+                </View>
+            </View>
             <View className="flex flex-row items-start">
                 <View className="flex justify-center items-center flex-row flex-1">
                     <View className="w-[46px] h-[46px] rounded-lg flex justify-center items-center ">
@@ -60,13 +68,7 @@ const ItemStatus = ({ status, data, hora, local }) => {
                 </View>
             
             </View>
-            <View className="flex flex-row items-start">
-                <View className="w-[46px] h-[46px] flex justify-center items-center">
-                    <View className='h-[46px] w-[2px] bg-white'>
-
-                    </View>
-                </View>
-            </View>
+           
         </View>
      
     );

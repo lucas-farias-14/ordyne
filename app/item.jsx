@@ -60,6 +60,7 @@ const Item = () => {
 
   return (
     <SafeAreaView className="h-full bg-primary">
+
         <ConfirmModal
            isVisible={isModalVisible}
            onClose={() => setModalVisible(false)}
@@ -67,30 +68,32 @@ const Item = () => {
            message={modalMessage}
            onConfirm={handleConfirm}
         />
-        <View className="w-full justify-between items-center px-10 flex-row py-5  border-b-2 border-secondary border-spacing-10">
-          <View className="flex flex-row gap-4">
+        <View className="w-full justify-between items-center px-5 flex-row py-4  border-b-2 border-secondary border-spacing-5">
+          <View className="flex flex-row gap-2 items-center justify-left">
             <TouchableOpacity onPress={handleReturn}>
               <Image
                 source={icons.arrowback}
-                className="w-8 h-8"
+                className="w-5 h-5"
                 resizeMode="cover"
               />
             </TouchableOpacity>
-            <Text className="text-2xl text-white font-semibold">{value}</Text>
-          </View>
-
-          <TouchableOpacity onPress={handleReload}>
+            <Text className="text-xl text-white font-semibold">{value}</Text>
+            
+            <TouchableOpacity onPress={handleReload}>
             <Image
               source={icons.reloadWhite}
-              className="w-5 h-5"
+              className="w-4 h-4"
               resizeMode="cover"
             />
           </TouchableOpacity>
+          </View>
+
+          
           
           <TouchableOpacity onPress={handlePress}>
             <Image
               source={icons.trash}
-              className="w-8 h-8"
+              className="w-6 h-6"
               resizeMode="cover"
             />
           </TouchableOpacity>
@@ -100,50 +103,40 @@ const Item = () => {
             <ActivityIndicator animating={loading} color="#fff" size="large" className="mt-10" />)
             :
           (
-          <>
-          <View className= "w-full justify-center items-center px-5 mt-5">
-            <View className="flex flex-col items-start">
-                <View className="flex flex-row items-start">
-                    <View className="flex justify-center items-center flex-row flex-1">
-                        <View className="w-[46px] h-[46px] rounded-lg flex justify-center items-center ">
-                            <Image
+          <ScrollView>
+            <View className= "w-full justify-center items-center px-5 mt-5">
+              <View className="flex flex-col items-start">
+                  <View className="flex flex-row items-start">
+                      <View className="flex justify-center items-center flex-row flex-1">
+                          <View className="w-[46px] h-[46px] rounded-lg flex justify-center items-center ">
+                              <Image
 
-                                source={icons.world}
-                                className="w-full h-full rounded-lg"
-                                resizeMode="cover"
-                            />
-                        </View>
-                        <View className="flex justify-center flex-1 ml-3">
-                            <Text
-                                className="font-psemibold text-2xl text-white"
-                                numberOfLines={1}
-                            >
-                              Correios
-                            </Text>
-                        </View>
-                    </View>
-                
-                </View>
-                <View className="flex flex-row items-start">
-                    <View className="w-[46px] h-[46px] flex justify-center items-center">
-                        <View className='h-[46px] w-[2px] bg-white'>
-
-                        </View>
-                    </View>
-                </View>
+                                  source={icons.world}
+                                  className="w-full h-full rounded-lg"
+                                  resizeMode="cover"
+                              />
+                          </View>
+                          <View className="flex justify-center flex-1 ml-3">
+                              <Text
+                                  className="font-psemibold text-xl text-white"
+                                  numberOfLines={1}
+                              >
+                                Correios
+                              </Text>
+                          </View>
+                      </View>
+                  
+                  </View>
+                 
+              </View>
             </View>
-          </View>
-          <View className="px-5">
-            <FlatList 
-              data={data}
-              keyExtractor={(item) => item.codigo}
-              renderItem={({item}) => (
-                <ItemStatus status={item.status} data={item.data} hora={item.hora} local={item.local} />
-              )} 
-              
-            />
-          </View>
-          </>
+            <View className="px-5">
+              { data.map((item, index) => (
+                <ItemStatus key={index} status={item.status} data={item.data} hora={item.hora} local={item.local} />
+              ))}
+                
+            </View>
+          </ScrollView>
           )}
         </>
       

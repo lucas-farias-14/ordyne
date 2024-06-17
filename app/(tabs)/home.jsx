@@ -1,12 +1,14 @@
-import { View, Text, FlatList, RefreshControl } from 'react-native'
+import { View, Text, FlatList, RefreshControl, ActivityIndicator } from 'react-native'
 import React from 'react'
 import { SafeAreaView } from 'react-native-safe-area-context'
 import ListItem from '../../components/ListItem'
 import { listAllCodes, updateItem } from '../../lib/api'
 import { router, useFocusEffect } from 'expo-router'
  const Home = () => {
+  const [loadingOrders, setLoadingOrders] = React.useState(true)
   const [refreshing, setRefreshing] = React.useState(false)	
   const [items, setItems] = React.useState([])
+
   const onRefresh = async () => {
     setRefreshing(true);
     
@@ -26,8 +28,6 @@ import { router, useFocusEffect } from 'expo-router'
 
   const loadAllItens = async () => {
     newItens = [...items];
-
-
     for (let i = 0; i < items.length; i++) {
       setTimeout(async () => {
         const response = await updateItem(items[i].codigo);
@@ -38,7 +38,9 @@ import { router, useFocusEffect } from 'expo-router'
   }
 
   React.useEffect(() => {
+    setLoadingOrders(true)
     const fetchData = async () => {
+      
       try{
         const response = await listAllCodes()
         setItems(response)
@@ -47,10 +49,13 @@ import { router, useFocusEffect } from 'expo-router'
       }
     }
     fetchData()
+    setLoadingOrders(false)
   }, [])
 
   useFocusEffect(
+
     React.useCallback(() => {
+      setLoadingOrders(true)
       const fetchData = async () => {
         try {
           const response = await listAllCodes();
@@ -59,13 +64,14 @@ import { router, useFocusEffect } from 'expo-router'
           console.error('Erro ao buscar códigos:', error);
           setItems([]);
         }
+        setLoadingOrders(false) 
       };
       fetchData();
+   
     }, [])
   );
 
   function handleButtonPress(codigo, loading){
-    
     if(loading === false) {
     router.push(`../item?value=${codigo}`)
     }
@@ -73,6 +79,11 @@ import { router, useFocusEffect } from 'expo-router'
 
    return (  
      <SafeAreaView className="bg-primary h-full">
+      {loadingOrders ? (
+        <View classaName ="items-center justify-center flex h-full">
+          <ActivityIndicator animating={loadingOrders} color="#fff" size="large" className="mt-10" />
+        </View>
+      ): (
       <FlatList 
         data={items}
         keyExtractor={(item) => item.codigo}
@@ -95,13 +106,15 @@ import { router, useFocusEffect } from 'expo-router'
         )}
         ListEmptyComponent={() => (
           <View className="justify-center items-start px-4 mb-6">
+            {!loadingOrders ? (
             <Text className="text-sm text-gray-50 mt-2 text-center font-thin">Nenhum item encontrado, cadastre novos itens para prosseguir</Text>
+            ) : ''}
           </View>
         )}
         refreshControl={
           <RefreshControl refreshing={refreshing} onRefresh={onRefresh} />
         }
-      />
+      />)}
      </SafeAreaView>
    )
  }
