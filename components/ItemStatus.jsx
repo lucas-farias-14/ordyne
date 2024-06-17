@@ -10,12 +10,12 @@ const ItemStatus = ({ status, data, hora, local }) => {
                     <View className="w-[46px] h-[46px] rounded-lg flex justify-center items-center ">
                     {status === 'Objeto entregue ao destinatário' ?
                      (   <Image
-                        source={icons.cube}
+                        source={icons.posted}
                         className="w-full h-full rounded-lg"
                         resizeMode="cover" />
                     ) : status == 'Objeto encaminhado' ? (
                         <Image
-                        source={icons.truck}
+                        source={icons.truckRoundBack}
                         className="w-full h-full rounded-lg"
                         resizeMode="cover" />
                     ) : status == 'Objeto saiu para entrega ao destinatário' ? (
@@ -25,7 +25,7 @@ const ItemStatus = ({ status, data, hora, local }) => {
                         resizeMode="cover" />
                     ) : status == 'Objeto postado' ? (
                         <Image
-                        source={icons.ordyneicon}
+                        source={icons.world}
                         className="w-full h-full rounded-lg"
                         resizeMode="cover" />
                     ) : (

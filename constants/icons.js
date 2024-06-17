@@ -6,6 +6,11 @@ import cube from "../assets/icons/cube.png";
 import ordyneicon from "../assets/icons/ordyneicon.png";
 import trash from "../assets/icons/delete.png";
 import arrowback from "../assets/icons/arrowback.png";
+import reload from "../assets/icons/reload.png";
+import truckRoundBack from "../assets/icons/truckRoundBack.png";
+import arrowRoundBack from "../assets/icons/arrowRoundBack.png";
+import reloadWhite from "../assets/icons/reloadWhite.png";
+import posted from "../assets/icons/posted.png";
 
 export default {
     truck,
@@ -15,5 +20,11 @@ export default {
     cube,
     ordyneicon,
     trash,
-    arrowback
+    arrowback,
+    reload,
+    truckRoundBack,
+    arrowRoundBack,
+    reloadWhite,
+    posted
+
 };
