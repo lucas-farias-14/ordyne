@@ -44,7 +44,6 @@ import { router, useFocusEffect } from 'expo-router'
         setItems(response)
       }catch{
         setItems([])
-      
       }
     }
     fetchData()
